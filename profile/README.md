@@ -1,3 +1,12 @@
+<!--
+  ⚠️ 게시 안내: 이 Overview README는 두 곳에 "동일하게" 올려야 합니다.
+  1) Pickeslog/.github         → profile/README.md  (외부 방문자용, 로그아웃 상태에서 보임)
+  2) Pickeslog/.github-private → profile/README.md  (조직 멤버용, 로그인 상태에서 보임)
+  한쪽만 수정하면 다른 쪽은 예전 내용이 그대로 보이는 문제가 생깁니다.
+  이 초안을 수정한 뒤에는 반드시 두 저장소 모두에 같은 내용을 붙여넣어 주세요.
+  이미지 3개(readme-img-01/02/03.png)도 같은 폴더 구조로 두 저장소 profile/ 아래에 함께 올려야 이미지가 깨지지 않습니다.
+-->
+
 # 🍀 Clov.
 
 > 친구와의 약속과 추억을 기록하는 웹 서비스입니다.
@@ -26,6 +35,7 @@
 - [📦 리포지토리 구성](#-리포지토리-구성)
 - [🛠 기술 스택](#-기술-스택)
 - [📁 프로젝트 구조](#-프로젝트-구조)
+- [🧑‍💻 코드 리뷰](#-코드-리뷰)
 - [📡 주요 API 엔드포인트](#-주요-api-엔드포인트)
 - [🗄 데이터베이스 설계](#-데이터베이스-설계)
 - [📝 커밋 컨벤션](#-커밋-컨벤션)
@@ -70,12 +80,14 @@
 
 ## 🫂 팀원 소개
 
-| | 이름 | GitHub |
-|---|---|---|
-| 👑 팀장 | Myeongjun Kim | [@myeongjundev](https://github.com/myeongjundev) |
-| 팀원 | lami2342 | [@lami2342](https://github.com/lami2342) |
-| 팀원 | chacha1650a | [@chacha1650a](https://github.com/chacha1650a) |
-| 팀원 | kimgyubi1234 | [@kimgyubi1234](https://github.com/kimgyubi1234) |
+담당 영역을 처음부터 고정하지 않고, 팀원들이 필요한 부분을 자유롭게 교차하며 작업한 방식이라 아래 역할은 **대표 기여 도메인** 기준입니다.
+
+| | 이름 | GitHub | 담당 |
+|---|---|---|---|
+| 👑 팀장 | Myeongjun Kim | [@myeongjundev](https://github.com/myeongjundev) | 초기 설계 총괄(인증·보안·DB), 배포·CI/CD |
+| 팀원 | chacha1650a | [@chacha1650a](https://github.com/chacha1650a) | 상점(Shop) — 카탈로그·지갑·구매 API/화면 |
+| 팀원 | kimgyubi1234 | [@kimgyubi1234](https://github.com/kimgyubi1234) | 알림 기능, 경험치·레벨 UI, 배포·이메일 인프라 복구(SMTP 연동), 발표 PPT 제작 |
+| 팀원 | lami2342 | [@lami2342](https://github.com/lami2342) | 추억(Memory) 초기 구현, 인증·초대 플로우 |
 
 ## 📦 리포지토리 구성
 
@@ -161,6 +173,130 @@ src/
 
 </details>
 
+## 🧑‍💻 코드 리뷰
+
+실제 코드베이스에서 핵심 로직 3가지를 뽑아 동작을 설명합니다. 각 항목마다 실제 실행 화면 스크린샷을 함께 담았습니다.
+
+### ① 약속 완료 → 추억 전환 트리거 (`clov-api` · `PlanService.complete`)
+
+<img src="./readme-img-01-plan-complete.png" alt="약속 완료 후 인생4컷으로 전환된 화면" width="420" />
+
+```java
+@Transactional
+public PlanResponses.Detail complete(long planId, long userId) {
+    Plan plan = findPlan(planId);
+    assertActiveMember(plan.getRoomId(), userId);
+
+    planMapper.complete(planId, LocalDateTime.now(ZoneOffset.UTC));
+
+    expService.grant(
+        plan.getRoomId(), userId,
+        ExpService.ACTION_PLAN_COMPLETE,
+        PLAN_COMPLETE_EXP, planId
+    );
+
+    notificationService.fanOut(
+        plan.getRoomId(), userId,
+        NotificationService.TYPE_FRIEND,
+        NotificationService.SUB_PLAN_COMPLETE,
+        planId, null
+    );
+
+    return detail(planId, userId);
+}
+```
+
+`plan`은 완료 처리할 약속을 조회한 것이다. `findPlan(planId)`로 먼저 가져온 뒤 `assertActiveMember`로 이 사용자가 해당 우정공간의 활성 멤버인지부터 확인한다. Clov.는 방장·관리자 개념이 없어서 "이 공간의 멤버인가"와 "본인이 작성한 것인가", 이 두 가지 검사만으로 권한을 판단하는데, 약속 완료는 작성자가 아니어도 공간 멤버 누구나 할 수 있는 동작이라 여기서는 첫 번째 검사만 쓴다.
+
+멤버십 확인이 끝나면 `planMapper.complete()`로 상태를 `COMPLETED`로 바꾼다. 이 한 줄이 실행되는 순간 `plan.memory_status`도 함께 `CANDIDATE`로 바뀌는데, 이게 곧 "추억 작성 후보로 전환"되는 지점이다. 별도의 전환 API가 있는 게 아니라 약속을 완료 처리하는 이 메서드 자체가 추억으로 넘어가는 유일한 트리거다.
+
+그다음 `expService.grant()`로 경험치를 적립하고, `notificationService.fanOut()`으로 같은 방 멤버 전원에게 완료 알림을 보낸다. 메서드 전체가 `@Transactional`로 묶여 있어서 경험치 적립이나 알림 발송 중 하나라도 실패하면 완료 처리 자체가 롤백된다 — 완료 상태는 바뀌었는데 경험치·알림이 빠지는 어중간한 상태를 막기 위해서다.
+
+### ② 우정 레벨 연속 레벨업 (`clov-api` · `ExpService.grant`)
+
+<img src="./readme-img-02-level-exp.png" alt="경험치 히스토리 팝업" width="500" />
+
+```java
+@Transactional(propagation = Propagation.REQUIRED)
+public void grant(long roomId, long userId, String actionType,
+                   int expDelta, Long referenceId) {
+    if (expDelta <= 0) return;
+
+    Room room = roomMapper.findByIdForUpdate(roomId)
+        .orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND));
+
+    int level = room.getFriendshipLevel();
+    if (level >= MAX_LEVEL) return;
+
+    int startLevel = level;
+    int exp = room.getExpPoint() + expDelta;
+
+    while (exp >= EXP_PER_LEVEL && level < MAX_LEVEL) {
+        level++;
+        exp -= EXP_PER_LEVEL;
+    }
+    roomMapper.updateLevelAndExp(roomId, level, exp);
+
+    if (level > startLevel) {
+        notificationService.fanOut(roomId, null, TYPE_FRIEND,
+            SUB_LEVEL_UP, roomId, "{\"level\":" + level + "}");
+    }
+}
+```
+
+`room`은 경험치를 올릴 우정공간을 조회한 것인데, 단순 조회가 아니라 `findByIdForUpdate`로 행에 잠금을 걸고 읽는다. 약속 완료·추억 작성·마스코트 교감처럼 경험치를 주는 행동이 여러 개라서, 같은 방에서 동시에 여러 활동이 겹치면 잠금 없이는 두 트랜잭션이 같은 값을 읽어 한쪽 적립이 유실될 수 있다. 행을 잠그고 읽는 이유가 그것이다.
+
+`exp`는 이번 적립분까지 더한 값이고 `level`은 현재 레벨이다. `exp_point`는 누적 총량이 아니라 "지금 레벨 안에서 쌓인 진행도"라서, `while` 루프를 돌며 100이 넘을 때마다 레벨을 하나씩 올리고 그만큼 `exp`에서 뺀다. 한 번에 큰 경험치가 들어와 100을 여러 번 넘기면(예: 마스코트 교감을 몰아서 여러 번 한 경우) 넘긴 횟수만큼 레벨이 연속으로 오른다.
+
+레벨이 실제로 올랐을 때(`level > startLevel`)만 알림을 보낸다. 연속으로 여러 레벨이 올라도 알림은 최종 레벨 하나로 한 번만 나가는데, 레벨업마다 알림을 따로 보내면 사용자 입장에서는 스팸처럼 느껴지기 때문이다.
+
+### ③ 상점 아이템 구매 (`clov-api` · `ShopService.purchase`)
+
+<img src="./readme-img-03-shop-purchase.png" alt="상점에서 아이템 구매 후 장착 완료 토스트" width="600" />
+
+```java
+@Transactional
+public PurchaseResponse purchase(long userId, long itemId) {
+    ShopItem item = shopMapper.findById(itemId)
+        .orElseThrow(() -> new DomainException(SHOP_ITEM_NOT_FOUND));
+    if (!item.isPurchasable()) {
+        throw new DomainException(ErrorCode.ITEM_NOT_PURCHASABLE);
+    }
+    if (shopMapper.existsInInventory(userId, itemId)) {
+        throw new DomainException(ErrorCode.ITEM_ALREADY_OWNED);
+    }
+
+    getOrCreateWallet(userId);
+    UserWallet wallet = shopMapper.findWalletForUpdate(userId)
+        .orElseThrow(() -> new IllegalStateException("wallet must exist"));
+
+    long finalPrice = item.finalPrice();
+    if (wallet.getBalance() < finalPrice) {
+        throw new DomainException(ErrorCode.INSUFFICIENT_BALANCE);
+    }
+
+    long newBalance = wallet.getBalance() - finalPrice;
+    shopMapper.updateBalance(userId, newBalance);
+    shopMapper.insertInventory(userId, itemId, finalPrice);
+
+    WalletTransaction tx = new WalletTransaction();
+    tx.setUserId(userId);
+    tx.setReason(WalletTransaction.REASON_PURCHASE);
+    tx.setAmount(-finalPrice);
+    tx.setBalanceAfter(newBalance);
+    shopMapper.insertTransaction(tx);
+
+    item.setOwned(true);
+    return new PurchaseResponse(ShopItemResponse.from(item), newBalance);
+}
+```
+
+`item`은 구매하려는 상점 아이템이고, 조회하자마자 두 가지를 먼저 검사한다. `isPurchasable()`로 판매 종료된 아이템은 아닌지, `existsInInventory()`로 이미 보유한 아이템은 아닌지다. 이 두 검사를 잔액 확인보다 먼저 해두면 어차피 살 수 없는 아이템 때문에 지갑까지 잠그는 낭비를 하지 않아도 된다.
+
+`wallet`은 `findWalletForUpdate`로 잠그고 읽는데, 레벨업 로직과 같은 이유다. 같은 유저가 두 기기에서 거의 동시에 서로 다른 아이템을 사려고 하면 잠금이 없을 경우 둘 다 "잔액이 충분하다"고 읽어버려서, 실제로는 잔액이 모자란데도 구매가 둘 다 성공해버릴 수 있다. 행을 잠그고 순서대로 처리해 이 문제를 막는다.
+
+`finalPrice`만큼 잔액을 차감하고 `insertInventory`로 보유 아이템 목록에 추가한 다음, `WalletTransaction`이라는 거래 내역을 하나 더 남긴다. `amount`는 차감이라 음수로 저장하고 `balanceAfter`에는 차감 이후 잔액을 그대로 남겨서, 나중에 "왜 골드가 줄었는지"를 이 원장 테이블만 보고도 추적할 수 있게 했다.
+
 ## 📡 주요 API 엔드포인트
 
 > Base path: `/api/v1` · 모든 응답은 `{success, data}` / `{success, error}` 공통 봉투를 사용합니다.
@@ -200,6 +336,7 @@ src/
 **경험치 · 상점 (Exp / Shop)**
 - `GET /rooms/{roomId}/level` — 우정 레벨·경험치 조회
 - `GET /shop/items` · `POST /shop/items/{itemId}/purchase` — 상점 아이템 조회·구매
+- `GET /shop/transactions` — 골드 거래 원장(내역) 조회
 
 **알림 (Notifications)**
 - `GET /rooms/{roomId}/notifications` — 알림 목록(공지/친구/가입신청 탭)
