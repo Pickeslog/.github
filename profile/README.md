@@ -63,7 +63,7 @@
 - 🛍 **상점** — 골드로 마스코트 코스튬·배경 구매 및 장착
 - 🎂 **생일 약속** — 일정에 뜬 생일 칩으로 생일 약속 생성, 골든 티켓 표시, 추억·행운편지에 생일 배지/CTA 연동
 - 🔔 **알림** — 공지·친구활동·가입신청 관리
-- 🔐 **인증** — 이메일 회원가입/로그인 및 소셜 로그인(Google, Naver, Kakao)
+- 🔐 **인증** — 이메일 회원가입/로그인 및 소셜 로그인(Google, Naver, Kakao), 비밀번호 재설정(이메일 링크·토큰 방식)
 
 ## 🔍 참고 서비스
 
@@ -121,6 +121,7 @@
 **Storage / Infra / CI·Test**
 
 ![CloudflareR2](https://img.shields.io/badge/Cloudflare%20R2-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
+![Brevo](https://img.shields.io/badge/Brevo%20SMTP-0B996E?style=for-the-badge)
 ![GCP](https://img.shields.io/badge/Google%20Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)
 ![nginx](https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
@@ -307,7 +308,7 @@ public PurchaseResponse purchase(long userId, long itemId) {
 **인증 (Auth)**
 - `POST /auth/signup` · `POST /auth/login` — 이메일/비밀번호 회원가입·로그인
 - `POST /auth/refresh` · `POST /auth/logout` — 토큰 재발급·로그아웃
-- `POST /auth/password/forgot` · `POST /auth/password/reset` — 비밀번호 재설정
+- `POST /auth/password/forgot` · `POST /auth/password/reset` — 비밀번호 재설정. `forgot`이 재설정 토큰을 생성해 이메일(Brevo SMTP)로 링크를 발송하고, `reset`이 그 토큰과 새 비밀번호를 받아 실제로 변경한다(운영자가 임시 비밀번호를 주는 방식이 아님)
 - `GET /oauth2/authorization/{provider}` — 소셜 로그인(google, naver, kakao)
 
 **우정공간 (Rooms)**
