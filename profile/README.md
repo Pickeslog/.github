@@ -4,7 +4,8 @@
   2) Pickeslog/.github-private → profile/README.md  (조직 멤버용, 로그인 상태에서 보임)
   한쪽만 수정하면 다른 쪽은 예전 내용이 그대로 보이는 문제가 생깁니다.
   이 초안을 수정한 뒤에는 반드시 두 저장소 모두에 같은 내용을 붙여넣어 주세요.
-  이미지 3개(readme-img-01/02/03.png)도 같은 폴더 구조로 두 저장소 profile/ 아래에 함께 올려야 이미지가 깨지지 않습니다.
+  이미지 3개(인생4컷.png, 히스토리.png, 상점.png)도 README.md와 같은 폴더(profile/)에 함께 올려야 이미지가 깨지지 않습니다.
+  (로컬 "Readme에 넣을 사진들" 폴더에 있는 파일을 이름 그대로 업로드하면 됩니다. 이름을 바꾸지 마세요.)
 -->
 
 # 🍀 Clov.
@@ -180,7 +181,7 @@ src/
 
 ### ① 약속 완료 → 추억 전환 트리거 (`clov-api` · `PlanService.complete`)
 
-<img src="./readme-img-01-plan-complete.png" alt="약속 완료 후 인생4컷으로 전환된 화면" width="420" />
+<img src="./인생4컷.png" alt="약속 완료 후 인생4컷으로 전환된 화면" width="420" />
 
 ```java
 @Transactional
@@ -215,7 +216,7 @@ public PlanResponses.Detail complete(long planId, long userId) {
 
 ### ② 우정 레벨 연속 레벨업 (`clov-api` · `ExpService.grant`)
 
-<img src="./readme-img-02-level-exp.png" alt="경험치 히스토리 팝업" width="500" />
+<img src="./히스토리.png" alt="경험치 히스토리 팝업" width="500" />
 
 ```java
 @Transactional(propagation = Propagation.REQUIRED)
@@ -253,7 +254,7 @@ public void grant(long roomId, long userId, String actionType,
 
 ### ③ 상점 아이템 구매 (`clov-api` · `ShopService.purchase`)
 
-<img src="./readme-img-03-shop-purchase.png" alt="상점에서 아이템 구매 후 장착 완료 토스트" width="600" />
+<img src="./상점.png" alt="상점에서 아이템 구매 후 장착 완료 토스트" width="600" />
 
 ```java
 @Transactional
