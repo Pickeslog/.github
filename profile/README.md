@@ -4,8 +4,9 @@
   2) Pickeslog/.github-private → profile/README.md  (조직 멤버용, 로그인 상태에서 보임)
   한쪽만 수정하면 다른 쪽은 예전 내용이 그대로 보이는 문제가 생깁니다.
   이 초안을 수정한 뒤에는 반드시 두 저장소 모두에 같은 내용을 붙여넣어 주세요.
-  이미지 3개(인생4컷.png, 히스토리.png, 상점.png)도 README.md와 같은 폴더(profile/)에 함께 올려야 이미지가 깨지지 않습니다.
+  이미지 4개(인생4컷.png, 히스토리.png, 상점.png, ERD.png)도 README.md와 같은 폴더(profile/)에 함께 올려야 이미지가 깨지지 않습니다.
   (로컬 "Readme에 넣을 사진들" 폴더에 있는 파일을 이름 그대로 업로드하면 됩니다. 이름을 바꾸지 마세요.)
+  페이지 미리보기 섹션의 GIF들도 마찬가지로, 로컬 "움짤" 폴더 전체를 README.md와 같은 위치에 "움짤"이라는 폴더명 그대로 업로드해야 이미지가 깨지지 않습니다.
 -->
 
 # 🍀 Clov.
@@ -16,10 +17,25 @@
 
 ![Java](https://img.shields.io/badge/Java%2021-007396?style=for-the-badge&logo=openjdk&logoColor=white)
 ![SpringBoot](https://img.shields.io/badge/Spring%20Boot%204.0-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![SpringSecurity](https://img.shields.io/badge/Spring%20Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)
+![OAuth2](https://img.shields.io/badge/OAuth2%20Client-4285F4?style=for-the-badge&logo=auth0&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![MyBatis](https://img.shields.io/badge/MyBatis-DC143C?style=for-the-badge)
+![MySQL](https://img.shields.io/badge/MySQL%208-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![React](https://img.shields.io/badge/React%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL%208-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![ReactRouter](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white)
+![TanStackQuery](https://img.shields.io/badge/TanStack%20Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-433E38?style=for-the-badge)
+![Emotion](https://img.shields.io/badge/Emotion-D26AC2?style=for-the-badge&logo=emotion&logoColor=white)
+![CloudflareR2](https://img.shields.io/badge/Cloudflare%20R2-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
+![Brevo](https://img.shields.io/badge/Brevo%20SMTP-0B996E?style=for-the-badge)
+![GCP](https://img.shields.io/badge/Google%20Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)
+![nginx](https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![GithubActions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![JUnit5](https://img.shields.io/badge/JUnit5-25A162?style=for-the-badge&logo=junit5&logoColor=white)
+![Testcontainers](https://img.shields.io/badge/Testcontainers-2496ED?style=for-the-badge&logo=testcontainers&logoColor=white)
 
 ![개발기간](https://img.shields.io/badge/개발기간-2026.06.26%20~%202026.08.14-FA7268?style=flat-square)
 ![팀구성](https://img.shields.io/badge/팀구성-4인-8E7CC3?style=flat-square)
@@ -41,11 +57,11 @@
 - [🗄 데이터베이스 설계](#-데이터베이스-설계)
 - [📝 커밋 컨벤션](#-커밋-컨벤션)
 - [💻 코드 컨벤션](#-코드-컨벤션)
-- [🚀 로컬 실행 방법](#-로컬-실행-방법)
 - [🔀 브랜치 전략](#-브랜치-전략)
 - [🤝 협업 방식](#-협업-방식)
 - [📊 진행 상황 관리](#-진행-상황-관리)
 - [📚 문서 (SSOT)](#-문서-ssot)
+- [📸 페이지 미리보기](#-페이지-미리보기)
 
 ## 📋 프로젝트 소개
 
@@ -85,10 +101,10 @@
 
 | | 이름 | GitHub | 담당 |
 |---|---|---|---|
-| 👑 팀장 | Myeongjun Kim | [@myeongjundev](https://github.com/myeongjundev) | 초기 설계 총괄(인증·보안·DB), 배포·CI/CD |
-| 팀원 | chacha1650a | [@chacha1650a](https://github.com/chacha1650a) | 상점(Shop) — 카탈로그·지갑·구매 API/화면 |
-| 팀원 | kimgyubi1234 | [@kimgyubi1234](https://github.com/kimgyubi1234) | 알림 기능, 경험치·레벨 UI, 배포·이메일 인프라 복구(SMTP 연동), 발표 PPT 제작 |
-| 팀원 | lami2342 | [@lami2342](https://github.com/lami2342) | 추억(Memory) 초기 구현, 인증·초대 플로우 |
+| 👑 팀장 | 김명준 | [@myeongjundev](https://github.com/myeongjundev) | 초기 설계 총괄(인증·보안·DB), 배포·CI/CD |
+| 팀원 | 김대훈 | [@chacha1650a](https://github.com/chacha1650a) | 상점(Shop) — 카탈로그·지갑·구매 API/화면 |
+| 팀원 | 김규비 | [@kimgyubi1234](https://github.com/kimgyubi1234) | 알림 기능, 경험치·레벨 UI, 배포·이메일 인프라 복구(SMTP 연동) |
+| 팀원 | 신동수 | [@lami2342](https://github.com/lami2342) | 추억(Memory) 초기 구현, 인증·초대 플로우 |
 
 ## 📦 리포지토리 구성
 
@@ -132,8 +148,7 @@
 
 ## 📁 프로젝트 구조
 
-<details>
-<summary><b>clov-api</b> — 도메인 단위 패키지 구조 (MyBatis, JPA 미사용)</summary>
+**`clov-api`** — 도메인 단위 패키지 구조 (MyBatis, JPA 미사용)
 
 ```
 com/korit/clovapi/
@@ -158,10 +173,7 @@ com/korit/clovapi/
     └── time/                 # 서버 시간 유틸
 ```
 
-</details>
-
-<details>
-<summary><b>clov-web</b> — 기능 단위 폴더 구조</summary>
+**`clov-web`** — 기능 단위 폴더 구조
 
 ```
 src/
@@ -173,11 +185,7 @@ src/
 └── routes/         # 라우트 가드
 ```
 
-</details>
-
 ## 🧑‍💻 코드 리뷰
-
-실제 코드베이스에서 핵심 로직 3가지를 뽑아 동작을 설명합니다. 각 항목마다 실제 실행 화면 스크린샷을 함께 담았습니다.
 
 ### ① 약속 완료 → 추억 전환 트리거 (`clov-api` · `PlanService.complete`)
 
@@ -208,11 +216,11 @@ public PlanResponses.Detail complete(long planId, long userId) {
 }
 ```
 
-`plan`은 완료 처리할 약속을 조회한 것이다. `findPlan(planId)`로 먼저 가져온 뒤 `assertActiveMember`로 이 사용자가 해당 우정공간의 활성 멤버인지부터 확인한다. Clov.는 방장·관리자 개념이 없어서 "이 공간의 멤버인가"와 "본인이 작성한 것인가", 이 두 가지 검사만으로 권한을 판단하는데, 약속 완료는 작성자가 아니어도 공간 멤버 누구나 할 수 있는 동작이라 여기서는 첫 번째 검사만 쓴다.
+`plan`은 완료 처리할 약속을 조회한 것입니다. `findPlan(planId)`로 먼저 가져온 뒤 `assertActiveMember`로 이 사용자가 해당 우정공간의 활성 멤버인지부터 확인합니다. Clov.는 방장·관리자 개념이 없어서 "이 공간의 멤버인가"와 "본인이 작성한 것인가", 이 두 가지 검사만으로 권한을 판단하는데, 약속 완료는 작성자가 아니어도 공간 멤버 누구나 할 수 있는 동작이라 여기서는 첫 번째 검사만 씁니다.
 
-멤버십 확인이 끝나면 `planMapper.complete()`로 상태를 `COMPLETED`로 바꾼다. 이 한 줄이 실행되는 순간 `plan.memory_status`도 함께 `CANDIDATE`로 바뀌는데, 이게 곧 "추억 작성 후보로 전환"되는 지점이다. 별도의 전환 API가 있는 게 아니라 약속을 완료 처리하는 이 메서드 자체가 추억으로 넘어가는 유일한 트리거다.
+멤버십 확인이 끝나면 `planMapper.complete()`로 상태를 `COMPLETED`로 바꿉니다. 이 한 줄이 실행되는 순간 `plan.memory_status`도 함께 `CANDIDATE`로 바뀌는데, 이게 곧 "추억 작성 후보로 전환"되는 지점입니다. 별도의 전환 API가 있는 게 아니라 약속을 완료 처리하는 이 메서드 자체가 추억으로 넘어가는 유일한 트리거입니다.
 
-그다음 `expService.grant()`로 경험치를 적립하고, `notificationService.fanOut()`으로 같은 방 멤버 전원에게 완료 알림을 보낸다. 메서드 전체가 `@Transactional`로 묶여 있어서 경험치 적립이나 알림 발송 중 하나라도 실패하면 완료 처리 자체가 롤백된다 — 완료 상태는 바뀌었는데 경험치·알림이 빠지는 어중간한 상태를 막기 위해서다.
+그다음 `expService.grant()`로 경험치를 적립하고, `notificationService.fanOut()`으로 같은 방 멤버 전원에게 완료 알림을 보냅니다. 메서드 전체가 `@Transactional`로 묶여 있어서 경험치 적립이나 알림 발송 중 하나라도 실패하면 완료 처리 자체가 롤백됩니다 — 완료 상태는 바뀌었는데 경험치·알림이 빠지는 어중간한 상태를 막기 위해서입니다.
 
 ### ② 우정 레벨 연속 레벨업 (`clov-api` · `ExpService.grant`)
 
@@ -246,11 +254,11 @@ public void grant(long roomId, long userId, String actionType,
 }
 ```
 
-`room`은 경험치를 올릴 우정공간을 조회한 것인데, 단순 조회가 아니라 `findByIdForUpdate`로 행에 잠금을 걸고 읽는다. 약속 완료·추억 작성·마스코트 교감처럼 경험치를 주는 행동이 여러 개라서, 같은 방에서 동시에 여러 활동이 겹치면 잠금 없이는 두 트랜잭션이 같은 값을 읽어 한쪽 적립이 유실될 수 있다. 행을 잠그고 읽는 이유가 그것이다.
+`room`은 경험치를 올릴 우정공간을 조회한 것인데, 단순 조회가 아니라 `findByIdForUpdate`로 행에 잠금을 걸고 읽습니다. 약속 완료·추억 작성·마스코트 교감처럼 경험치를 주는 행동이 여러 개라서, 같은 방에서 동시에 여러 활동이 겹치면 잠금 없이는 두 트랜잭션이 같은 값을 읽어 한쪽 적립이 유실될 수 있습니다. 행을 잠그고 읽는 이유가 그것입니다.
 
-`exp`는 이번 적립분까지 더한 값이고 `level`은 현재 레벨이다. `exp_point`는 누적 총량이 아니라 "지금 레벨 안에서 쌓인 진행도"라서, `while` 루프를 돌며 100이 넘을 때마다 레벨을 하나씩 올리고 그만큼 `exp`에서 뺀다. 한 번에 큰 경험치가 들어와 100을 여러 번 넘기면(예: 마스코트 교감을 몰아서 여러 번 한 경우) 넘긴 횟수만큼 레벨이 연속으로 오른다.
+`exp`는 이번 적립분까지 더한 값이고 `level`은 현재 레벨입니다. `exp_point`는 누적 총량이 아니라 "지금 레벨 안에서 쌓인 진행도"라서, `while` 루프를 돌며 100이 넘을 때마다 레벨을 하나씩 올리고 그만큼 `exp`에서 뺍니다. 한 번에 큰 경험치가 들어와 100을 여러 번 넘기면(예: 마스코트 교감을 몰아서 여러 번 한 경우) 넘긴 횟수만큼 레벨이 연속으로 오릅니다.
 
-레벨이 실제로 올랐을 때(`level > startLevel`)만 알림을 보낸다. 연속으로 여러 레벨이 올라도 알림은 최종 레벨 하나로 한 번만 나가는데, 레벨업마다 알림을 따로 보내면 사용자 입장에서는 스팸처럼 느껴지기 때문이다.
+레벨이 실제로 올랐을 때(`level > startLevel`)만 알림을 보냅니다. 연속으로 여러 레벨이 올라도 알림은 최종 레벨 하나로 한 번만 나가는데, 레벨업마다 알림을 따로 보내면 사용자 입장에서는 스팸처럼 느껴지기 때문입니다.
 
 ### ③ 상점 아이템 구매 (`clov-api` · `ShopService.purchase`)
 
@@ -293,57 +301,40 @@ public PurchaseResponse purchase(long userId, long itemId) {
 }
 ```
 
-`item`은 구매하려는 상점 아이템이고, 조회하자마자 두 가지를 먼저 검사한다. `isPurchasable()`로 판매 종료된 아이템은 아닌지, `existsInInventory()`로 이미 보유한 아이템은 아닌지다. 이 두 검사를 잔액 확인보다 먼저 해두면 어차피 살 수 없는 아이템 때문에 지갑까지 잠그는 낭비를 하지 않아도 된다.
+`item`은 구매하려는 상점 아이템이고, 조회하자마자 두 가지를 먼저 검사합니다. `isPurchasable()`로 판매 종료된 아이템은 아닌지, `existsInInventory()`로 이미 보유한 아이템은 아닌지입니다. 이 두 검사를 잔액 확인보다 먼저 해두면 어차피 살 수 없는 아이템 때문에 지갑까지 잠그는 낭비를 하지 않아도 됩니다.
 
-`wallet`은 `findWalletForUpdate`로 잠그고 읽는데, 레벨업 로직과 같은 이유다. 같은 유저가 두 기기에서 거의 동시에 서로 다른 아이템을 사려고 하면 잠금이 없을 경우 둘 다 "잔액이 충분하다"고 읽어버려서, 실제로는 잔액이 모자란데도 구매가 둘 다 성공해버릴 수 있다. 행을 잠그고 순서대로 처리해 이 문제를 막는다.
+`wallet`은 `findWalletForUpdate`로 잠그고 읽는데, 레벨업 로직과 같은 이유입니다. 같은 유저가 두 기기에서 거의 동시에 서로 다른 아이템을 사려고 하면 잠금이 없을 경우 둘 다 "잔액이 충분하다"고 읽어버려서, 실제로는 잔액이 모자란데도 구매가 둘 다 성공해버릴 수 있습니다. 행을 잠그고 순서대로 처리해 이 문제를 막습니다.
 
-`finalPrice`만큼 잔액을 차감하고 `insertInventory`로 보유 아이템 목록에 추가한 다음, `WalletTransaction`이라는 거래 내역을 하나 더 남긴다. `amount`는 차감이라 음수로 저장하고 `balanceAfter`에는 차감 이후 잔액을 그대로 남겨서, 나중에 "왜 골드가 줄었는지"를 이 원장 테이블만 보고도 추적할 수 있게 했다.
+`finalPrice`만큼 잔액을 차감하고 `insertInventory`로 보유 아이템 목록에 추가한 다음, `WalletTransaction`이라는 거래 내역을 하나 더 남깁니다. `amount`는 차감이라 음수로 저장하고 `balanceAfter`에는 차감 이후 잔액을 그대로 남겨서, 나중에 "왜 골드가 줄었는지"를 이 원장 테이블만 보고도 추적할 수 있게 했습니다.
 
 ## 📡 주요 API 엔드포인트
 
 > Base path: `/api/v1` · 모든 응답은 `{success, data}` / `{success, error}` 공통 봉투를 사용합니다.
 
-<details>
-<summary>전체 엔드포인트 펼치기</summary>
-
-**인증 (Auth)**
-- `POST /auth/signup` · `POST /auth/login` — 이메일/비밀번호 회원가입·로그인
-- `POST /auth/refresh` · `POST /auth/logout` — 토큰 재발급·로그아웃
-- `POST /auth/password/forgot` · `POST /auth/password/reset` — 비밀번호 재설정. `forgot`이 재설정 토큰을 생성해 이메일(Brevo SMTP)로 링크를 발송하고, `reset`이 그 토큰과 새 비밀번호를 받아 실제로 변경한다(운영자가 임시 비밀번호를 주는 방식이 아님)
-- `GET /oauth2/authorization/{provider}` — 소셜 로그인(google, naver, kakao)
-
-**우정공간 (Rooms)**
-- `POST /rooms` · `GET /rooms/{roomId}` — 생성·상세 조회
-- `GET /rooms/{roomId}/members` · `DELETE /rooms/{roomId}/members/me` — 멤버 조회·나가기
-- `POST /rooms/{roomId}/mascot/interact` — 마스코트 교감(골드 획득)
-
-**초대 · 가입 신청 (Invites & Join Requests)**
-- `POST /rooms/{roomId}/invites` — 초대 코드 발급/재발급
-- `POST /invites/accept` — 코드로 가입 신청(즉시 입장 아님)
-- `POST /join-requests/{id}/accept` · `POST /join-requests/{id}/undo` — 신청 수락·5분 되돌리기
-
-**약속 (Plans)**
-- `POST /rooms/{roomId}/plans` · `POST /plans/{planId}/complete` — 등록·완료(추억 전환 트리거)
-- `POST /plans/{planId}/stage-photos` — 4단계 인증사진 업로드
-
-**추억 (Memories)**
-- `POST /plans/{planId}/memories` · `POST /rooms/{roomId}/memories` — 약속 연동 추억 / 자유 추억 작성
-- `GET /rooms/{roomId}/memories` — 추억 피드(월별·태그·참여자 필터)
-- `POST /memories/{memoryId}/comments` — 친구 한 줄 댓글
-
-**행운편지 (Letters)**
-- `POST /rooms/{roomId}/letters` — 발송(지정 또는 전체 발송)
-- `GET /rooms/{roomId}/letters?box=received|sent` — 편지함 조회
-
-**경험치 · 상점 (Exp / Shop)**
-- `GET /rooms/{roomId}/level` — 우정 레벨·경험치 조회
-- `GET /shop/items` · `POST /shop/items/{itemId}/purchase` — 상점 아이템 조회·구매
-- `GET /shop/transactions` — 골드 거래 원장(내역) 조회
-
-**알림 (Notifications)**
-- `GET /rooms/{roomId}/notifications` — 알림 목록(공지/친구/가입신청 탭)
-
-</details>
+| 분류 | 엔드포인트 | 설명 |
+|---|---|---|
+| 인증 | `POST /auth/signup` · `POST /auth/login` | 이메일/비밀번호 회원가입·로그인 |
+| 인증 | `POST /auth/refresh` · `POST /auth/logout` | 토큰 재발급·로그아웃 |
+| 인증 | `POST /auth/password/forgot` · `POST /auth/password/reset` | 비밀번호 재설정. `forgot`이 재설정 토큰을 생성해 이메일(Brevo SMTP)로 링크를 발송하고, `reset`이 그 토큰과 새 비밀번호를 받아 실제로 변경한다(운영자가 임시 비밀번호를 주는 방식이 아님) |
+| 인증 | `GET /oauth2/authorization/{provider}` | 소셜 로그인(google, naver, kakao) |
+| 인증 | `POST /auth/oauth/exchange` · `POST /auth/oauth/link-confirm` | 소셜 로그인 토큰 교환. provider는 다르지만 이메일이 같은 기존 계정을 발견하면 자동 로그인 대신 연결 확인 절차를 거침 |
+| 우정공간 | `POST /rooms` · `GET /rooms/{roomId}` | 생성·상세 조회 |
+| 우정공간 | `GET /rooms/{roomId}/members` · `DELETE /rooms/{roomId}/members/me` | 멤버 조회·나가기 |
+| 우정공간 | `POST /rooms/{roomId}/mascot/interact` | 마스코트 교감(골드 획득) |
+| 초대·가입신청 | `POST /rooms/{roomId}/invites` | 초대 코드 발급/재발급 |
+| 초대·가입신청 | `POST /invites/accept` | 코드로 가입 신청(즉시 입장 아님) |
+| 초대·가입신청 | `POST /join-requests/{id}/accept` · `POST /join-requests/{id}/undo` | 신청 수락·5분 되돌리기 |
+| 약속 | `POST /rooms/{roomId}/plans` · `POST /plans/{planId}/complete` | 등록·완료(추억 전환 트리거) |
+| 약속 | `POST /plans/{planId}/stage-photos` | 4단계 인증사진 업로드 |
+| 추억 | `POST /plans/{planId}/memories` · `POST /rooms/{roomId}/memories` | 약속 연동 추억 / 자유 추억 작성 |
+| 추억 | `GET /rooms/{roomId}/memories` | 추억 피드(월별·태그·참여자 필터) |
+| 추억 | `POST /memories/{memoryId}/comments` | 친구 한 줄 댓글 |
+| 행운편지 | `POST /rooms/{roomId}/letters` | 발송(지정 또는 전체 발송) |
+| 행운편지 | `GET /rooms/{roomId}/letters?box=received\|sent` | 편지함 조회 |
+| 경험치·상점 | `GET /rooms/{roomId}/level` | 우정 레벨·경험치 조회 |
+| 경험치·상점 | `GET /shop/items` · `POST /shop/items/{itemId}/purchase` | 상점 아이템 조회·구매 |
+| 경험치·상점 | `GET /shop/transactions` | 골드 거래 원장(내역) 조회 |
+| 알림 | `GET /rooms/{roomId}/notifications` | 알림 목록(공지/친구/가입신청 탭) |
 
 > 전체 엔드포인트·요청/응답 스키마는 [API-CONTRACT.md](https://github.com/Pickeslog/web-design-repository/blob/main/docs/API-CONTRACT.md) 참고.
 
@@ -361,6 +352,8 @@ MySQL 8, 총 24개 테이블을 도메인 단위로 관리합니다.
 | 행운편지 | `lucky_letters`, `letter_favorites` |
 | 알림 | `notifications` |
 | 상점 | `shop_items`, `user_wallets`, `user_inventory_items`, `wallet_transactions` |
+
+<img src="./ERD.png" alt="Clov. ERD" width="800" />
 
 > 전체 ERD·DDL은 [api-spec/](https://github.com/Pickeslog/web-design-repository/tree/main/api-spec) 참고.
 
@@ -386,8 +379,6 @@ MySQL 8, 총 24개 테이블을 도메인 단위로 관리합니다.
 
 ## 💻 코드 컨벤션
 
-실제 코드베이스를 기준으로 정리했습니다.
-
 **clov-api (Java)**
 - 도메인 단위 패키지 구조: `domain/<도메인>/{controller, service, mapper, dto, entity}`
 - JPA, `@Entity`, Spring Data Repository는 사용하지 않는다 (MyBatis만 사용)
@@ -405,32 +396,6 @@ MySQL 8, 총 24개 테이블을 도메인 단위로 관리합니다.
 - 컴포넌트는 PascalCase, 함수·변수는 camelCase로 작성한다
 - API 호출은 `src/api/`를 거치며, 컴포넌트에서 직접 `fetch`를 호출하지 않는다
 - 서버 데이터는 TanStack Query로, 클라이언트 전역 상태는 Zustand로 관리한다
-
-## 🚀 로컬 실행 방법
-
-**clov-api (백엔드)**
-```bash
-# 1. 시크릿 설정 파일 생성 후 DB·OAuth 정보 입력
-cp src/main/resources/application-secret.example.yaml src/main/resources/application-secret.yaml
-
-# 2. 테스트
-./gradlew test
-
-# 3. 실행 (http://localhost:8080)
-./gradlew bootRun
-```
-
-**clov-web (프론트엔드)**
-```bash
-# 1. 패키지 설치
-npm install
-
-# 2. 개발 서버 실행 (http://localhost:5173)
-npm run dev
-
-# 3. 빌드
-npm run build
-```
 
 ## 🔀 브랜치 전략
 
@@ -464,3 +429,79 @@ chore/<주제>              예) chore/gitignore
 | [API-CONTRACT.md](https://github.com/Pickeslog/web-design-repository/blob/main/docs/API-CONTRACT.md) | REST API 계약, 권한 · 에러 모델 |
 | [screen-spec-source/](https://github.com/Pickeslog/web-design-repository/tree/main/screen-spec-source) | 화면별 명세(대시보드 · 추억피드 · 행운편지 · 일정계획 등) |
 | [api-spec/](https://github.com/Pickeslog/web-design-repository/tree/main/api-spec) | DB 통합 설계 · 리소스 맵 |
+
+## 📸 페이지 미리보기
+
+### 인증
+
+<div align="center"><div><b>서비스 가이드</b></div><p align="center"><img src="움짤/가이드.gif" width="700" /></p></div>
+<div align="center"><div><b>일반 로그인</b></div><p align="center"><img src="움짤/로그인 일반.gif" width="700" /></p></div>
+<div align="center"><div><b>구글 소셜 로그인</b></div><p align="center"><img src="움짤/로그인 구글.gif" width="700" /></p></div>
+<div align="center"><div><b>네이버 소셜 로그인</b></div><p align="center"><img src="움짤/로그인 네이버.gif" width="700" /></p></div>
+<div align="center"><div><b>카카오 소셜 로그인</b></div><p align="center"><img src="움짤/로그인 카카오.gif" width="700" /></p></div>
+<div align="center"><div><b>회원가입</b></div><p align="center"><img src="움짤/로그인 회원가입.gif" width="700" /></p></div>
+<div align="center"><div><b>비밀번호 찾기</b></div><p align="center"><img src="움짤/로그인 비밀번호 찾기.gif" width="700" /></p></div>
+
+### 우정공간
+
+<div align="center"><div><b>우정공간 목록</b></div><p align="center"><img src="움짤/우정공간 대표.gif" width="700" /></p></div>
+<div align="center"><div><b>우정공간 입장</b></div><p align="center"><img src="움짤/방 입장.gif" width="700" /></p></div>
+<div align="center"><div><b>우정공간 이동</b></div><p align="center"><img src="움짤/방 이동.gif" width="700" /></p></div>
+<div align="center"><div><b>우정공간 생성</b></div><p align="center"><img src="움짤/룸 방 생성.gif" width="700" /></p></div>
+<div align="center"><div><b>우정공간 편집 · 삭제</b></div><p align="center"><img src="움짤/룸 삭제 편집.gif" width="700" /></p></div>
+<div align="center"><div><b>우정공간 즐겨찾기</b></div><p align="center"><img src="움짤/룸 즐겨찾기.gif" width="700" /></p></div>
+<div align="center"><div><b>사용자 테마 설정</b></div><p align="center"><img src="움짤/사용자 테마.gif" width="700" /></p></div>
+<div align="center"><div><b>대시보드에서 D-day 바로 만들기</b></div><p align="center"><img src="움짤/우정공간 디데이 작성.gif" width="700" /></p></div>
+<div align="center"><div><b>추억 카드 테마 변경</b></div><p align="center"><img src="움짤/우정공간 추억카드 테마.gif" width="700" /></p></div>
+<div align="center"><div><b>대시보드에서 추억 바로 작성</b></div><p align="center"><img src="움짤/우정공간 추억피드 작성.gif" width="700" /></p></div>
+
+### 일정계획
+
+<div align="center"><div><b>일정계획 티켓 뷰</b></div><p align="center"><img src="움짤/일정계획 티켓.gif" width="700" /></p></div>
+<div align="center"><div><b>D-day 만들기</b></div><p align="center"><img src="움짤/일정계획 디데이 작성.gif" width="700" /></p></div>
+<div align="center"><div><b>약속 일정 수정</b></div><p align="center"><img src="움짤/일정계획 수정.gif" width="700" /></p></div>
+<div align="center"><div><b>인생4컷 완성</b></div><p align="center"><img src="움짤/일정계획 4컷 완성.gif" width="700" /></p></div>
+<div align="center"><div><b>일정계획에서 추억 바로 작성</b></div><p align="center"><img src="움짤/일정계획 바로 추억피드 작성.gif" width="700" /></p></div>
+<div align="center"><div><b>일정계획 삭제</b></div><p align="center"><img src="움짤/일정계획 삭제.gif" width="700" /></p></div>
+
+### 추억피드
+
+<div align="center"><div><b>추억피드 게시글 작성</b></div><p align="center"><img src="움짤/추악피드 게시글 작성.gif" width="700" /></p></div>
+<div align="center"><div><b>해시태그 검색</b></div><p align="center"><img src="움짤/추악피드 해시태그 검색.gif" width="700" /></p></div>
+<div align="center"><div><b>전체 사진 보기</b></div><p align="center"><img src="움짤/추억피드에서 전체 사진보기.gif" width="700" /></p></div>
+<div align="center"><div><b>추억 상세(영수증) 보기</b></div><p align="center"><img src="움짤/추억피드에서 영수증 클릭.gif" width="700" /></p></div>
+<div align="center"><div><b>달력 보기 · 친구 기록 필터</b></div><p align="center"><img src="움짤/추억피드에서 달력, 친구기록.gif" width="700" /></p></div>
+<div align="center"><div><b>추억피드 삭제</b></div><p align="center"><img src="움짤/추억피드 삭제.gif" width="700" /></p></div>
+
+### 행운편지
+
+<div align="center"><div><b>행운편지 작성</b></div><p align="center"><img src="움짤/행운편지 편지 작성.gif" width="700" /></p></div>
+<div align="center"><div><b>보낸 편지 열어보기</b></div><p align="center"><img src="움짤/행운편지 작성한 편지 엶.gif" width="700" /></p></div>
+<div align="center"><div><b>행운편지 테마</b></div><p align="center"><img src="움짤/행운편지 테마.gif" width="700" /></p></div>
+
+### 상점
+
+<div align="center"><div><b>상점 입장</b></div><p align="center"><img src="움짤/상점 입장.gif" width="700" /></p></div>
+<div align="center"><div><b>상점 아이템 목록</b></div><p align="center"><img src="움짤/상점 목록.gif" width="700" /></p></div>
+<div align="center"><div><b>마스코트 스킨 선택</b></div><p align="center"><img src="움짤/상점 마스코트 결정.gif" width="700" /></p></div>
+<div align="center"><div><b>아이템 구매 · 장착</b></div><p align="center"><img src="움짤/상점 구매.gif" width="700" /></p></div>
+
+### 생일 이벤트
+
+#### 🎂 내 생일
+
+<div align="center"><div><b>생일 우정공간 연출</b></div><p align="center"><img src="움짤/생일 우정공간.gif" width="700" /></p></div>
+<div align="center"><div><b>생일 약속(골든 티켓)</b></div><p align="center"><img src="움짤/생일 일정계획.gif" width="700" /></p></div>
+<div align="center"><div><b>생일 추억 배지</b></div><p align="center"><img src="움짤/생일 추억피드.gif" width="700" /></p></div>
+
+#### 🎁 친구 생일
+
+<div align="center"><div><b>마스코트 연출</b></div><p align="center"><img src="움짤/친구생일 마스코트.gif" width="700" /></p></div>
+<div align="center"><div><b>일정계획</b></div><p align="center"><img src="움짤/친구생일 일정계획.gif" width="700" /></p></div>
+<div align="center"><div><b>추억피드</b></div><p align="center"><img src="움짤/친구생일 추억피드.gif" width="700" /></p></div>
+<div align="center"><div><b>행운편지</b></div><p align="center"><img src="움짤/친구생일 행운편지.gif" width="700" /></p></div>
+
+### 알림
+
+<div align="center"><div><b>알림 목록 확인</b></div><p align="center"><img src="움짤/알림 종알림 확인.gif" width="700" /></p></div>
+<div align="center"><div><b>가입 신청 알림</b></div><p align="center"><img src="움짤/알림 가입신청.gif" width="700" /></p></div>
